@@ -191,7 +191,7 @@ try {
     Write-Host "   • Visit: https://github.com/akinofcam/copyer/issues" -ForegroundColor Cyan
     Write-Host ""
     Read-Host "Press Enter to exit"
-    exit 1
+    exit 2
 }
 
 Write-Host "✨ Installation wizard completed!" -ForegroundColor Green
