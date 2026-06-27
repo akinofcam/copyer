@@ -1,0 +1,33 @@
+# CODEOWNERS
+
+# This file defines code ownership for the Copyer project
+
+# Global owners for the entire repository
+* @akinofcam
+
+# CLI and argument parsing
+Program.cs @akinofcam
+CliParser.cs @akinofcam
+
+# Core copying logic
+DirectoryCopier.cs @akinofcam
+
+# UI components
+ProgressDialog.cs @akinofcam
+
+# Project configuration
+Copyer.csproj @akinofcam
+.editorconfig @akinofcam
+
+# Documentation
+*.md @akinofcam
+docs/ @akinofcam
+
+# GitHub workflows and configurations
+.github/ @akinofcam
+.gitignore @akinofcam
+
+# Contributing and community guidelines
+CONTRIBUTING.md @akinofcam
+CODE_OF_CONDUCT.md @akinofcam
+SECURITY.md @akinofcam
