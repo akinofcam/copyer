@@ -176,9 +176,9 @@ try {
     Write-Host "   • Try running as Administrator" -ForegroundColor Cyan
     Write-Host "   • Visit: https://github.com/akinofcam/copyer/issues" -ForegroundColor Cyan
     Write-Host ""
-    Read-Host "Press Enter to exit"
-    return
 }
 
 Write-Host "✨ Installation wizard completed!" -ForegroundColor Green
 Write-Host ""
+return
+
