@@ -189,5 +189,4 @@ if ($InstallSuccess) {
     Write-Host "✨ Installation wizard completed!" -ForegroundColor Green
     Write-Host ""
 }
-
 return
