@@ -11,6 +11,17 @@ function Test-Administrator {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
+function Test-Zip {
+    param([string]$Path)
+    try {
+        $zip = [System.IO.Compression.ZipFile]::OpenRead($Path)
+        $zip.Dispose()
+        return $true
+    } catch {
+        return $false
+    }
+}
+
 Write-Host "╔════════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
 Write-Host "║          Welcome to Copyer Installation Wizard              ║" -ForegroundColor Cyan
 Write-Host "║     Professional Directory Cloning Tool for Windows         ║" -ForegroundColor Cyan
@@ -72,7 +83,12 @@ try {
     
     Invoke-WebRequest -Uri $DownloadUrl -OutFile $ZipPath -UseBasicParsing -ErrorAction Stop
     Write-Host "   ✅ Downloaded successfully" -ForegroundColor Green
-    
+
+    # Validate ZIP
+    if (-not (Test-Zip $ZipPath)) {
+        throw "Downloaded file is not a valid ZIP archive. GitHub may have returned an HTML error page."
+    }
+
     $InstallPath = "C:\Program Files\Copyer"
     
     if (Test-Path $InstallPath) {
@@ -122,6 +138,7 @@ try {
     Write-Host "🎉 Copyer has been successfully installed!" -ForegroundColor Green
     Write-Host ""
     
+    # 🧪 Testing installation
     Write-Host "🧪 Testing installation..." -ForegroundColor Yellow
     $CopyerPath = Get-Command copy -ErrorAction SilentlyContinue
     
@@ -131,6 +148,7 @@ try {
     
     Write-Host ""
     
+    # Ask if user wants to run
     $RunNow = Read-Host "📋 Would you like to run Copyer now? (y/n)"
     
     if ($RunNow -eq "y" -or $RunNow -eq "Y") {
@@ -161,6 +179,7 @@ try {
         Write-Host ""
     }
     
+    # 📚 Next Steps
     Write-Host "📚 Next Steps:" -ForegroundColor Yellow
     Write-Host "   • Run: copy --help" -ForegroundColor Cyan
     Write-Host "   • Usage: copy C:\Source" -ForegroundColor Cyan
@@ -177,16 +196,16 @@ try {
     Write-Host "   • Ensure .NET 10.0+ is installed" -ForegroundColor Cyan
     Write-Host "   • Check your internet connection" -ForegroundColor Cyan
     Write-Host "   • Try running as Administrator" -ForegroundColor Cyan
+    Write-Host "   • GitHub may have returned an HTML error page instead of the ZIP" -ForegroundColor Cyan
     Write-Host "   • Visit: https://github.com/akinofcam/copyer/issues" -ForegroundColor Cyan
     Write-Host ""
 
-    # Mark failure
     $InstallSuccess = $false
 }
 
-# Only show success message if installation succeeded
 if ($InstallSuccess) {
     Write-Host "✨ Installation wizard completed!" -ForegroundColor Green
     Write-Host ""
 }
+
 return
