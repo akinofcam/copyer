@@ -39,12 +39,16 @@
 
 ## 🚀 Quick Start
 
-### Installation (PowerShell)
+### Installation (Windows)
 
 ```powershell
   irm https://raw.githubusercontent.com/akinofcam/copyer/main/install.ps1 | iex
 ```
+### Installation (MacOS and Linux)
 
+```powershell
+  curl -s https://raw.githubusercontent.com/akinofcam/copyer/main/install.sh | bash
+```
 ### Usage
 
 ```bash
